@@ -12,13 +12,13 @@ function startGame(){
     inquirer.prompt([
         {
             type: "list",
-            name: "Main-Menu",
+            name: "mainMenu",
             message: "Main Menu",
             choices: ["New Game", "Load Game", "Options", "Credits", "Exit"]
         }
-    ]).then(function(err, choice){
+    ]).then(function(err, ans){
         if (err) throw err;
-        switch (choice.Main-Menu){
+        switch (ans.mainMenu){
             case "New Game":
                 createCharacter();
                 break;
@@ -39,9 +39,9 @@ function startGame(){
     .catch(function(error) {
         console.error(error)})
 }
-
+//Create Character function that executes when we choose New Game
 function createCharacter (){
-    var attrPoints;
+    var attrPoints = 20;
     inquirer.prompt([
         {
             type: "input",
@@ -49,7 +49,7 @@ function createCharacter (){
             name: "name"
         }
     ]).then(function(ans){
-        var player = new player(ans.name)
+        var player = new Player(ans.name)
         console.log(player);
         connection.end()
     })
