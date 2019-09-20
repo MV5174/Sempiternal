@@ -2,6 +2,7 @@ var express = require("express");
 var inquirer = require("inquirer");
 var mysql = require("mysql");
 require("console.table");
+var connection = require("./config/connection.js");
 var orm = require("./config/orm.js");
 
 
@@ -16,8 +17,7 @@ function startGame(){
             message: "Main Menu",
             choices: ["New Game", "Load Game", "Options", "Credits", "Exit"]
         }
-    ]).then(function(err, ans){
-        if (err) throw err;
+    ]).then(function(ans){
         switch (ans.mainMenu){
             case "New Game":
                 createCharacter();
